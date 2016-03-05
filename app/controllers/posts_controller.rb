@@ -9,12 +9,12 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:caption)
+    params.require(:post).permit(:image, :caption)
   end
 
   def create
     Post.create(post_params)
-    redirect_to '/posts'
+    redirect_to posts_path
   end
 
 end
