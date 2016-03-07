@@ -40,6 +40,13 @@ feature 'posts' do
       expect(page).to have_content '#test'
       expect(page).to have_css("img[src*='test.jpg']")
     end
-  end
 
+  end
+  it 'Can\'t create a post without image' do
+    visit '/posts'
+    click_link 'Add a Post'
+    fill_in 'Caption', with: "Test: no picture added"
+    click_button 'Create Post'
+    expect(page).to have_content('You can\'t create a post without image')
+  end
 end
